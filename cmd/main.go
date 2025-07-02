@@ -1,3 +1,5 @@
+// This command-line application initializes and starts a smart iot sensor simulator
+// based on configuration provided via command-line flags
 package main
 
 import (

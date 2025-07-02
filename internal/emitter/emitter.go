@@ -1,3 +1,4 @@
+// Package emitter provides functions for sending http request simulating smart sensors activity.
 package emitter
 
 import (
@@ -10,15 +11,18 @@ import (
 	"github.com/dmikhr/sensor-simulator/internal/sensor"
 )
 
+// Emitter defines an interface for types that can emit sensor data.
 type Emitter interface {
 	Emit(sensor.Sensor) error
 }
 
+// HTTPEmitter defines struct for sending sensor data via http to a given endpoint.
 type HTTPEmitter struct {
 	client   *http.Client
 	endpoint string
 }
 
+// NewHTTPEmitter creates a new emitter instance.
 func NewHTTPEmitter(endpoint string, timeout time.Duration) *HTTPEmitter {
 	return &HTTPEmitter{
 		client:   &http.Client{Timeout: timeout},
@@ -26,6 +30,7 @@ func NewHTTPEmitter(endpoint string, timeout time.Duration) *HTTPEmitter {
 	}
 }
 
+// Emit sends sensor data to the endpoint.
 func (e *HTTPEmitter) Emit(s sensor.Sensor) error {
 	data, err := json.Marshal(s)
 	if err != nil {

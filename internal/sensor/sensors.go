@@ -1,3 +1,4 @@
+// Package sensor provides functions for working with sensor.
 package sensor
 
 var data = []*Data{
@@ -7,11 +8,8 @@ var data = []*Data{
 	{SensorID: "V1", Parameter: ValueTypeVoltage, Unit: "V", Frequency: 5, Location: "pump", Enabled: true},
 }
 
-// Init - set up sensors for simulation
+// Init sets up sensors for simulation.
 func Init() ([]*Sensor, []*Settings) {
-	// define struct initial data for search sensor with settings, then split into 2 slices with filter by enabled, put into a separate file within package
-	// map?
-	// return filtered results
 	var sensors []*Sensor
 	var sensorsSettings []*Settings
 	for _, sensor := range data {

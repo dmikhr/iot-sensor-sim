@@ -10,14 +10,14 @@ import (
 	"github.com/dmikhr/sensor-simulator/internal/timeutil"
 )
 
-// var rng = rand.New(rand.NewSource(time.Now().UnixNano()))
-
+// Simulator simulates sensor emitting data.
 type Simulator struct {
 	sender *HTTPEmitter
 	logger *slog.Logger
 	dryRun bool
 }
 
+// NewSimulator creates new simulator instance.
 func NewSimulator(sender *HTTPEmitter, logger *slog.Logger, dryRun bool) *Simulator {
 	return &Simulator{
 		sender: sender,
@@ -26,7 +26,7 @@ func NewSimulator(sender *HTTPEmitter, logger *slog.Logger, dryRun bool) *Simula
 	}
 }
 
-// Simulate - simulate sensor emitting data
+// Simulate simulates sensor emitting data.
 func (s *Simulator) Simulate(ctx context.Context, sensor *sensor.Sensor, frequency float64, wg *sync.WaitGroup) {
 	defer wg.Done()
 

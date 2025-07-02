@@ -2,6 +2,7 @@ package config
 
 import "time"
 
+// Config contains configuration for the application.
 type Config struct {
 	MaxWorkers     int
 	Port           int

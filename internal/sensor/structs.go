@@ -14,6 +14,7 @@ const (
 	ValueTypeVoltage     ValueType = "voltage"
 )
 
+// Data contains configuration information for sensor simulations.
 type Data struct {
 	SensorID  string
 	Parameter ValueType
@@ -23,6 +24,7 @@ type Data struct {
 	Enabled   bool
 }
 
+// Sensor represents data emitted by sensor.
 type Sensor struct {
 	SensorID  string    `json:"sensorId"`
 	Parameter ValueType `json:"type"`
@@ -31,6 +33,7 @@ type Sensor struct {
 	Value     float64   `json:"value"`
 }
 
+// New creates new sensor instance.
 func New(id string, param ValueType, unit string) *Sensor {
 	return &Sensor{
 		SensorID:  id,
@@ -39,12 +42,14 @@ func New(id string, param ValueType, unit string) *Sensor {
 	}
 }
 
+// Settings contains sensor settings.
 type Settings struct {
 	SensorID  string
 	Frequency float64
 	Location  string
 }
 
+// NewSettings creates a new settings instance.
 func NewSettings(id string, freq float64, location string) *Settings {
 	return &Settings{
 		SensorID: id,
@@ -54,6 +59,7 @@ func NewSettings(id string, freq float64, location string) *Settings {
 	}
 }
 
+// GenerateReading generates new sensor reading.
 func (s *Sensor) GenerateReading() {
 	s.Timestamp = time.Now()
 
@@ -79,7 +85,7 @@ func newV() float64 {
 	return 400
 }
 
-// rndRange returns a random number in the range [min, max]
+// rndRange returns a random number in the range [min, max].
 func rndRange(r *rand.Rand, minVal, maxVal float64) float64 {
 	if minVal > maxVal {
 		panic(fmt.Sprintf("invalid range: min (%.6f) > max (%.6f)", minVal, maxVal))
